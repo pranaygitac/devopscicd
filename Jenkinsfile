@@ -98,7 +98,7 @@ pipeline{
             steps {
                 script {
                     sh '''curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' \
-		    ec2-13-126-219-252.ap-south-1.compute.amazonaws.com:8080/job/cdjob/buildWithParameters?token=gitops-token&IMAGE_TAG=${IMAGE_TAG}
+		    --data-urlencode json='{"parameter": [{"name": "IMAGE_TAG", "value": "${IMAGE_TAG}"}]}'  ec2-13-126-219-252.ap-south-1.compute.amazonaws.com:8080/job/cdjob/buildWithParameters?token=gitops-token
 		    '''
                 }
             }
