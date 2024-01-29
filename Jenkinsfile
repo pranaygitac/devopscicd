@@ -97,8 +97,8 @@ pipeline{
         stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh '''curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' \
-		    --data-urlencode json='{"parameter": [{"name": "IMAGE_TAG", "value": "${IMAGE_TAG}"}]}'  ec2-13-126-219-252.ap-south-1.compute.amazonaws.com:8080/job/cdjob/buildWithParameters?token=gitops-token
+                    sh '''curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' \
+		    ec2-13-126-219-252.ap-south-1.compute.amazonaws.com:8080/job/cdjob/buildWithParameters/token=gitops-token&IMAGE_TAG=${IMAGE_TAG}
 		    '''
                 }
             }
